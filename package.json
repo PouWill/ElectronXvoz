@@ -1,0 +1,14 @@
+{
+  "name": "control-de-voz",
+  "version": "1.0.0",
+  "description": "Aplicación Electron con Control de voz y YouTube",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "latest"
+  }
+}
