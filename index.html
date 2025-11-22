@@ -101,6 +101,9 @@
   <div class="search-bar">
     <input type="text" id="searchInput" placeholder="¿Qué busco?">
     <button id="searchBtn">Buscar</button>
+    <label style="display: flex; align-items: center; gap: 5px; color: white; font-size: 14px;">
+      <input type="checkbox" id="playFirstCheckbox" style="width: 16px; height: 16px;"> Reproducir el primero
+    </label>
   </div>
 
   <div class="container">
@@ -113,6 +116,7 @@
     const searchInput = document.getElementById('searchInput');
     const searchBtn = document.getElementById('searchBtn');
     const youtubeFrame = document.getElementById('youtubeFrame');
+    const playFirstCheckbox = document.getElementById('playFirstCheckbox');
 
     function performSearch() {
       const searchQuery = searchInput.value.trim();
@@ -121,21 +125,23 @@
         youtubeFrame.src = searchUrl;
         searchInput.value = '';
 
-        // Espera a que el webview cargue los resultados y navega al primer video
-        youtubeFrame.addEventListener('did-finish-load', function handler() {
-          youtubeFrame.executeJavaScript(`
-            (function() {
-              const video = document.querySelector('a#video-title');
-              return video ? video.href : null;
-            })();
-          `).then(url => {
-            if (url) {
-              youtubeFrame.src = url;
-            }
+        if (playFirstCheckbox.checked) {
+          // Espera a que el webview cargue los resultados y navega al primer video
+          youtubeFrame.addEventListener('did-finish-load', function handler() {
+            youtubeFrame.executeJavaScript(`
+              (function() {
+                const video = document.querySelector('a#video-title');
+                return video ? video.href : null;
+              })();
+            `).then(url => {
+              if (url) {
+                youtubeFrame.src = url;
+              }
+            });
+            // Remueve el handler para evitar múltiples ejecuciones
+            youtubeFrame.removeEventListener('did-finish-load', handler);
           });
-          // Remueve el handler para evitar múltiples ejecuciones
-          youtubeFrame.removeEventListener('did-finish-load', handler);
-        });
+        }
       }
     }
 
