@@ -118,16 +118,26 @@
     const youtubeFrame = document.getElementById('youtubeFrame');
     const playFirstCheckbox = document.getElementById('playFirstCheckbox');
 
+    let playFirstHandler = null;
+
+    function removePlayFirstHandler() {
+      if (playFirstHandler) {
+        youtubeFrame.removeEventListener('did-finish-load', playFirstHandler);
+        playFirstHandler = null;
+      }
+    }
+
     function performSearch() {
       const searchQuery = searchInput.value.trim();
       if (searchQuery) {
         const searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`;
+        // Limpia cualquier handler anterior antes de buscar
+        removePlayFirstHandler();
         youtubeFrame.src = searchUrl;
         searchInput.value = '';
 
         if (playFirstCheckbox.checked) {
-          // Espera a que el webview cargue los resultados y navega al primer video
-          youtubeFrame.addEventListener('did-finish-load', function handler() {
+          playFirstHandler = function() {
             youtubeFrame.executeJavaScript(`
               (function() {
                 const video = document.querySelector('a#video-title');
@@ -138,9 +148,9 @@
                 youtubeFrame.src = url;
               }
             });
-            // Remueve el handler para evitar múltiples ejecuciones
-            youtubeFrame.removeEventListener('did-finish-load', handler);
-          });
+            removePlayFirstHandler();
+          };
+          youtubeFrame.addEventListener('did-finish-load', playFirstHandler);
         }
       }
     }
