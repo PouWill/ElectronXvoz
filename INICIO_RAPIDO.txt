@@ -1,0 +1,101 @@
+╔══════════════════════════════════════════════════════════════════════════════╗
+║                     INSTRUCCIONES RÁPIDAS - MICRÓFONO                        ║
+╚══════════════════════════════════════════════════════════════════════════════╝
+
+🚀 EMPEZAR AHORA
+════════════════════════════════════════════════════════════════════════════════
+
+1. Abre la aplicación (debe estar corriendo de npm start)
+2. Haz clic en "Permitir" ✓
+3. Abre DevTools: F12
+4. Ve a Console
+5. Di "hola" 🎤
+6. Mira cómo se ilumina la barra en VERDE 🟢
+
+
+✅ SIGNOS DE ÉXITO
+════════════════════════════════════════════════════════════════════════════════
+
+En la consola (F12 > Console) deberías ver:
+
+✓ Reconocimiento de voz INICIADO
+✓ Escuchado (final): hola
+✓ ¡PALABRA DE ACTIVACIÓN DETECTADA!: hola
+
+Y la barra de búsqueda se ilumina en VERDE 🟢
+
+
+❌ SI NO FUNCIONA
+════════════════════════════════════════════════════════════════════════════════
+
+1. ¿Ves error en rojo en la consola?
+   → Copia el error y búscalo en Google
+
+2. ¿El micrófono no se encuentra?
+   → Conecta un micrófono USB o verifica en Configuración de Windows
+
+3. ¿El micrófono está en uso por otra app?
+   → Cierra Discord, Skype, Zoom, etc.
+
+4. ¿Permiso denegado?
+   → En Windows: Configuración > Privacidad > Micrófono
+   → Habilita "control-de-voz"
+
+
+📞 TABLA DE ERRORES Y SOLUCIONES
+════════════════════════════════════════════════════════════════════════════════
+
+Error                          | Solución
+────────────────────────────────────────────────────────────────────────────
+NotFoundError                  | Conecta un micrófono USB
+NotAllowedError                | Haz clic en "Permitir"
+NotReadableError               | Cierra otras apps que usan micrófono
+SecurityError                  | Usa https:// o localhost
+TypeError                      | Actualiza tu navegador (Chrome/Edge)
+No speech detected             | Habla más fuerte o acércate al micrófono
+Network error                  | Reinicia la aplicación
+
+
+🎯 CAMBIOS REALIZADOS
+════════════════════════════════════════════════════════════════════════════════
+
+✓ Permisos de Electron corregidos
+✓ Manejo de errores mejorado
+✓ Logging detallado agregado
+✓ Configuración de audio simplificada
+✓ Reinicio automático del reconocimiento
+
+
+📋 RESUMEN
+════════════════════════════════════════════════════════════════════════════════
+
+La aplicación ahora:
+
+✓ Solicita permiso del micrófono al iniciar
+✓ Lo obtiene automáticamente en Electron
+✓ Escucha continuamente sin costo
+✓ Detecta la palabra "hola" (personalizable)
+✓ Muestra resplandor verde cuando detecta
+✓ Está lista para integrar tu API
+
+
+🔄 REINICIAR LA APLICACIÓN
+════════════════════════════════════════════════════════════════════════════════
+
+Si quieres reiniciar:
+
+1. Ctrl+C en el terminal (detiene npm start)
+2. npm start (reinicia la aplicación)
+
+
+📁 ARCHIVOS MODIFICADOS
+════════════════════════════════════════════════════════════════════════════════
+
+✓ main.js          - Permisos de Electron
+✓ renderer.js      - Lógica de micrófono y reconocimiento
+✓ CAMBIOS_REALIZADOS.txt  - Detalles técnicos
+
+
+¡LA APLICACIÓN ESTÁ LISTA! 🚀
+
+════════════════════════════════════════════════════════════════════════════════
